@@ -18,9 +18,12 @@ function Homepage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user: any = JSON.parse(localStorage.getItem("userInfo") || "");
-    console.log(user);
-    if (user) navigate("/chat");
+    const isLoggedIn = localStorage.getItem("userInfo");
+    if (isLoggedIn) {
+      const user: any = JSON.parse(isLoggedIn);
+      console.log(user);
+      if (user) navigate("/chat");
+    }
   }, [navigate]);
 
   return (

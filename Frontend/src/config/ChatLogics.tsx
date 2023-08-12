@@ -39,7 +39,7 @@ export const isSameUser = (messages: any, m: any, i: any) => {
   return i > 0 && messages[i - 1].sender._id === m.sender._id;
 };
 
-export const isLastMessage = (messages: any, m: any, i: any, userId: any) => {
+export const isLastMessage = (messages: any, i: any, userId: any) => {
   return (
     i === messages.length - 1 &&
     messages[messages.length - 1].sender._id !== userId &&

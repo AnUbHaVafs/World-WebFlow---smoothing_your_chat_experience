@@ -46,8 +46,12 @@ const MyChats: any = ({ fetchAgain }: any): any => {
   };
 
   useEffect(() => {
-    setLoggedUser(JSON.parse(localStorage.getItem("userInfo") || ""));
-    fetchChats();
+    const isLoggedIn = localStorage.getItem("userInfo");
+    if (isLoggedIn) {
+      setLoggedUser(JSON.parse(isLoggedIn));
+      fetchChats();
+    }
+
     // eslint-disable-next-line
   }, [fetchAgain]);
 
