@@ -110,7 +110,7 @@ const SideDrawer = (props: Props) => {
         },
       };
       const { data } = await axios.post(
-        `http://localhost:5000/api/user/chat`,
+        `http://localhost:5000/api/chat`,
         { userId },
         config
       );
@@ -151,8 +151,12 @@ const SideDrawer = (props: Props) => {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
-          Talk-A-Tive
+        <Text
+          style={{ textDecoration: "underline" }}
+          fontSize="2xl"
+          fontFamily="Work sans"
+        >
+          Branch International - Agents App
         </Text>
         <div>
           <Menu>
