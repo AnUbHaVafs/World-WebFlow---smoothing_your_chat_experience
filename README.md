@@ -35,5 +35,22 @@ Before you begin, ensure you have met the following requirements:
 ## Configuration
 
 1. Create a `.env` file in the `server` directory for environment variables:
+     ```bash
+     PORT=5000
+     MONGO_URI=mongodb://localhost:27017/your-database-name
      
-            
+Replace `your-database-name` with the desired name for your MongoDB database.
+
+## Running the Application
+
+1. Start the MongoDB server:
+- On Windows:
+  ```
+  mongod
+  ```
+- On macOS or Linux:
+  ```
+  sudo service mongod start
+  ```
+
+2. Start the backend server:            
