@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import {
   Modal,
   ModalOverlay,
@@ -20,7 +20,7 @@ import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
 
-type Props = {};
+// type Props = {};
 
 const GroupChatModal: any = ({ children }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();

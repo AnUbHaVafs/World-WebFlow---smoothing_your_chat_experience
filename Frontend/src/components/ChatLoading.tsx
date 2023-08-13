@@ -1,10 +1,10 @@
-import React from "react";
+// import React from "react";
 import { Stack } from "@chakra-ui/layout";
 import { Skeleton } from "@chakra-ui/skeleton";
 
-type Props = {};
+// type Props = {};
 
-const ChatLoading: any = (props: any): any => {
+const ChatLoading: any = (): any => {
   return (
     <Stack>
       <Skeleton height="45px" />

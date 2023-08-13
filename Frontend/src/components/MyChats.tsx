@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
@@ -10,7 +10,7 @@ import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
 
-type Props = {};
+// type Props = {};
 
 const MyChats: any = ({ fetchAgain }: any): any => {
   const [loggedUser, setLoggedUser] = useState();

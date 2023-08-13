@@ -32,9 +32,9 @@ import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
 
-type Props = {};
+// type Props = {};
 
-const SideDrawer = (props: Props) => {
+const SideDrawer = () => {
   const [search, setSearch] = useState<any>("");
   const [searchResult, setSearchResult] = useState<any>([]);
   const [loading, setLoading] = useState<any>(false);

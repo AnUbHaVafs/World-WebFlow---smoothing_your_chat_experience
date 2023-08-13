@@ -1,14 +1,14 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+// import axios from "axios";
+import { useState } from "react";
 import { Box } from "@chakra-ui/layout";
 import Chatbox from "../components/Chatbox";
 import MyChats from "../components/MyChats";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
 import { ChatState } from "../Context/ChatProvider";
 
-type Props = {};
+// type Props = {};
 
-const ChatPage: any = (props: Props) => {
+const ChatPage: any = () => {
   // const [chats, setChats] = useState<any>([]);
   // const fetchChats = async () => {
   //   const { data } = await axios.get("http://localhost:5000/api/chat");

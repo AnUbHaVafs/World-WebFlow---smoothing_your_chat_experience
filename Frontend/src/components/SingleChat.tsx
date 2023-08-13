@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { FormControl } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
@@ -19,7 +19,7 @@ import { ChatState } from "../Context/ChatProvider";
 const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket: any, selectedChatCompare: any;
 
-type Props = {};
+// type Props = {};
 
 const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
   const [messages, setMessages] = useState<any>([]);
@@ -127,7 +127,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved: any) => {
       if (
-        !selectedChatCompare || // if chat is not selected or doesn't match current chat
+        !selectedChatCompare || // if chat is not selected or incoming message doesn't match current chat.
         selectedChatCompare._id !== newMessageRecieved.chat._id
       ) {
         if (!notification.includes(newMessageRecieved)) {

@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { ViewIcon } from "@chakra-ui/icons";
 import {
   Modal,
@@ -23,7 +23,7 @@ import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
 
-type Props = {};
+// type Props = {};
 
 const UpdateGroupChatModal: any = ({
   fetchMessages,
