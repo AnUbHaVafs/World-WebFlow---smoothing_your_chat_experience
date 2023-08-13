@@ -54,3 +54,32 @@ Replace `your-database-name` with the desired name for your MongoDB database.
   ```
 
 2. Start the backend server:            
+  ```bash
+  cd server
+  npm run start
+
+The backend server will run on `http://localhost:5000`.
+
+3. Start the frontend development server:
+  ```bash
+  cd ../client
+  npm run dev
+
+The frontend development server will run on `http://localhost:3000`.
+
+## Accessing the Application
+
+Access the application by opening your web browser and navigating to [http://localhost:3000](http://localhost:3000).
+
+## Shutting Down the Application
+
+To shut down the application:
+1. Stop the frontend development server with `Ctrl + C`.
+2. Stop the backend server with `Ctrl + C`.
+3. Stop the MongoDB server:
+- On Windows, close the `mongod` command prompt.
+- On macOS or Linux:
+  ```
+  sudo service mongod stop
+  ```
+
