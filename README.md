@@ -5,6 +5,25 @@ Web Chat App ( Managing all Agent's Responses)
 
 Brief description of your project.
 
+# Technologies Used
+
+This project was built using the following technologies:
+
+- **TypeScript**: A superset of JavaScript that adds static types to the language.
+- **React**: A JavaScript library for building user interfaces.
+- **Node.js**: A runtime environment for executing JavaScript on the server.
+- **Express.js**: A minimal web application framework for Node.js.
+- **MongoDB**: A NoSQL database for storing and managing data.
+
+Feel free to explore the documentation of each technology for more information:
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [Node.js](https://nodejs.org/)
+- [Express.js](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
