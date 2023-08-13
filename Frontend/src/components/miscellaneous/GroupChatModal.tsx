@@ -115,7 +115,7 @@ const GroupChatModal: any = ({ children }: any) => {
       setChats([data, ...chats]);
       onClose();
       toast({
-        title: "New Group Chat Created!",
+        title: "Group Chat Created!",
         status: "success",
         duration: 5000,
         isClosable: true,

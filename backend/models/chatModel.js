@@ -10,6 +10,7 @@ const chatModel = mongoose.Schema(
       ref: "Message",
     },
     groupAdmin: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    status: { type: String, enum: ["unresolved", "pending", "resolved"] },
   },
   { timestamps: true }
 );

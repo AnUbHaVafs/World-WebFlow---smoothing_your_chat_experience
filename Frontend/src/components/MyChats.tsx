@@ -1,5 +1,5 @@
 // import React from "react";
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon, ArrowDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
@@ -7,7 +7,18 @@ import { useEffect, useState } from "react";
 import { getSender } from "../config/ChatLogics";
 import ChatLoading from "./ChatLoading";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
-import { Button } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  Badge,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuGroup,
+  MenuItem,
+  MenuDivider,
+} from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
 
 // type Props = {};
@@ -32,6 +43,7 @@ const MyChats: any = ({ fetchAgain }: any): any => {
         "http://localhost:5000/api/chat",
         config
       );
+      console.log(data);
       setChats(data);
     } catch (error) {
       toast({
@@ -76,14 +88,14 @@ const MyChats: any = ({ fetchAgain }: any): any => {
         justifyContent="space-between"
         alignItems="center"
       >
-        My Chats
+        Customers Inquiries
         <GroupChatModal>
           <Button
             display="flex"
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             rightIcon={<AddIcon />}
           >
-            New Group Chat
+            Group Chat
           </Button>
         </GroupChatModal>
       </Box>
@@ -109,20 +121,86 @@ const MyChats: any = ({ fetchAgain }: any): any => {
                 py={2}
                 borderRadius="lg"
                 key={chat._id}
+                _hover={{
+                  background: "white",
+                  color: "teal.500",
+                }}
               >
-                <Text>
-                  {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
-                </Text>
-                {chat.latestMessage && (
-                  <Text fontSize="xs">
-                    <b>{chat.latestMessage.sender.name} : </b>
-                    {chat.latestMessage.content.length > 50
-                      ? chat.latestMessage.content.substring(0, 51) + "..."
-                      : chat.latestMessage.content}
+                <div>
+                  <Flex>
+                    {/* <Avatar src="https://bit.ly/sage-adebayo" /> */}
+                    <Avatar src={`${chat["users"][0].pic}`} />
+                    <Box ml="3">
+                      <Text fontWeight="bold">
+                        {/* Segun Adebayo */}
+                        {!chat.isGroupChat
+                          ? getSender(loggedUser, chat.users)
+                          : chat.chatName}
+                        {chat["status"] == undefined && (
+                          <Badge ml="2" colorScheme="red">
+                            Unresolved
+                          </Badge>
+                        )}
+                        <Badge
+                          ml="2"
+                          colorScheme={
+                            chat["status"] == "unresolved"
+                              ? "red"
+                              : chat["status"] == "pending"
+                              ? "orange"
+                              : "green"
+                          }
+                        >
+                          {chat.status}
+                        </Badge>
+                      </Text>
+                      {chat.latestMessage && (
+                        <Text fontSize="sm">
+                          <b>{chat.latestMessage.sender.name} : </b>
+                          {chat.latestMessage.content.length > 50
+                            ? chat.latestMessage.content.substring(0, 51) +
+                              "..."
+                            : chat.latestMessage.content}
+                        </Text>
+                      )}
+                      {/* <Text fontSize="sm">UI Engineer</Text> */}
+                    </Box>
+                  </Flex>
+
+                  {/* <Text>
+                    {!chat.isGroupChat
+                      ? getSender(loggedUser, chat.users)
+                      : chat.chatName}
                   </Text>
-                )}
+                  {chat.latestMessage && (
+                    <Text fontSize="xs">
+                      <b>{chat.latestMessage.sender.name} : </b>
+                      {chat.latestMessage.content.length > 50
+                        ? chat.latestMessage.content.substring(0, 51) + "..."
+                        : chat.latestMessage.content}
+                    </Text>
+                  )} */}
+                </div>
+                {/* <ArrowDownIcon /> */}
+                <Menu>
+                  <MenuButton
+                    as={ArrowDownIcon}
+                    aria-label="Options"
+                    // icon={<ArrowDownIcon />}
+                    // variant="outline"
+                  />
+                  <MenuList>
+                    <MenuItem>
+                      <Badge colorScheme="green">Resolved</Badge>
+                    </MenuItem>
+                    <MenuItem>
+                      <Badge colorScheme="orange">Pending</Badge>
+                    </MenuItem>
+                    <MenuItem>
+                      <Badge colorScheme="red">Unresolved</Badge>
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
               </Box>
             ))}
           </Stack>

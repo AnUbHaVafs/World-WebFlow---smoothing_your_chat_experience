@@ -56,7 +56,8 @@ const accessChat = asyncHandler(async (req, res) => {
 //@access          Protected
 const fetchChats = asyncHandler(async (req, res) => {
   try {
-    Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
+    // Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
+    Chat.find({})
       .populate("users", "-password")
       .populate("groupAdmin", "-password")
       .populate("latestMessage")
@@ -98,7 +99,9 @@ const createGroupChat = asyncHandler(async (req, res) => {
       users: users,
       isGroupChat: true,
       groupAdmin: req.user,
+      status: "unresolved",
     });
+    console.log(groupChat);
 
     const fullGroupChat = await Chat.findOne({ _id: groupChat._id })
       .populate("users", "-password")

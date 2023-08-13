@@ -3,11 +3,25 @@ import { FormControl } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
 import "./styles.css";
-import { IconButton, Spinner, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  IconButton,
+  Spinner,
+  useDisclosure,
+  useToast,
+  Stack,
+} from "@chakra-ui/react";
+import { Responses } from "./Responses.js";
 import { getSender, getSenderFull } from "../config/ChatLogics";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ArrowBackIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, ChatIcon } from "@chakra-ui/icons";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import Lottie from "react-lottie";
@@ -29,6 +43,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
   const [typing, setTyping] = useState<Boolean>(false);
   const [istyping, setIsTyping] = useState<Boolean>(false);
   const toast = useToast();
+
+  const [size, setSize] = useState("md");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleClick = () => {
+    onOpen();
+  };
 
   const defaultOptions: any = {
     loop: true,
@@ -245,15 +266,73 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
               ) : (
                 <></>
               )}
-              <Input
-                variant="filled"
-                bg="#E0E0E0"
-                placeholder="Enter a message.."
-                value={newMessage}
-                onChange={typingHandler}
-              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "20px",
+                }}
+              >
+                <Input
+                  variant="filled"
+                  bg="#E0E0E0"
+                  placeholder="Enter a message.."
+                  value={newMessage}
+                  onChange={typingHandler}
+                />
+                <ChatIcon onClick={() => handleClick()} boxSize={5} />
+              </div>
             </FormControl>
           </Box>
+          <Drawer onClose={onClose} isOpen={isOpen} size={size}>
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerHeader
+                style={{
+                  textDecoration: "underline",
+                  // display: "flex",
+                  // flexDirection: "row",
+                  // justifyContent: "center",
+                }}
+              >{`Canned Messages`}</DrawerHeader>
+              <DrawerBody>
+                <Stack
+                  direction="column"
+                  style={{ overflow: "hidden" }}
+                  spacing={4}
+                  align="center"
+                >
+                  {Responses.map((response: any, i: number) => (
+                    <Button
+                      style={{ width: "95%", height: "50px" }}
+                      colorScheme="teal"
+                      variant="outline"
+                      onClick={() => setNewMessage(response.text)}
+                    >
+                      {response["text"].substring(0, 50)}
+                    </Button>
+                  ))}
+                  {/* <Button
+                    style={{ width: "95%" }}
+                    colorScheme="teal"
+                    variant="outline"
+                  >
+                    Button
+                  </Button>
+                  <Button
+                    style={{ width: "95%" }}
+                    colorScheme="teal"
+                    variant="outline"
+                  >
+                    Button
+                  </Button> */}
+                </Stack>
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
         </>
       ) : (
         // to get socket.io on same page
