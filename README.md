@@ -21,9 +21,9 @@ Before you begin, ensure you have met the following requirements:
 
 2. Navigate to the project directory:
     ```bash
-  cd your-project
+    cd your-project
 
 3. Install frontend dependencies:
     ```bash
-  cd client
-  npm install
+   cd client
+   npm install
