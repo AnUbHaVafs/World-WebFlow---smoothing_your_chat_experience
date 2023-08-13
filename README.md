@@ -58,6 +58,7 @@ Replace `your-database-name` with the desired name for your MongoDB database.
   cd server
   npm run start
 
+
 The backend server will run on `http://localhost:5000`.
 
 3. Start the frontend development server:
