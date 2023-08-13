@@ -35,7 +35,7 @@ Before you begin, ensure you have met the following requirements:
 ## Configuration
 
 1. Create a `.env` file in the `server` directory for environment variables:
-     ```bash
+     ```
      PORT=5000
      MONGO_URI=mongodb://localhost:27017/your-database-name
      
