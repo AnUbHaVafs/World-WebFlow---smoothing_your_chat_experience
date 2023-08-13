@@ -10,6 +10,8 @@ Below are the implemented functionalities:
    - Multiple agents can log in simultaneously to respond to incoming messages.
    - Agents are presented with an intuitive UI to manage customer inquiries.
 
+  ![Screenshot (393)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/47013445-6dbb-4aae-b83a-e09ec568ae6d)
+
 2. **API Integration**:
    - Created an API endpoint to send and receive customer messages.
    - Messages can be submitted through a web form and are stored in the system.
@@ -23,21 +25,33 @@ Below are the implemented functionalities:
 
 4. **Agent Workload Management**:
    - Implemented a scheme to prevent multiple agents from working on the same message using status : unresolved | pending | resolved and using real-time typing notations.
+  
+![Screenshot (389)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/6b95921b-b414-4458-897d-ab3e33bf2dba)
 
 6. **Search Functionality**:
    - Implemented a search feature allowing agents to search messages and customers.
+
+![Screenshot (390)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/d0b1d488-b60c-4a9c-ade1-5122374e5b06)
+
 
 7. **Customer Context**:
    - Provided agents with additional context by surfacing customer profiles and relevant internal information.
    - Visible Customer Information : Email, Image, Name.
 
+![Screenshot (391)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/155599cf-b703-4458-8ee8-bca20b161be8)
+
 8. **Canned Responses**:
    - Incorporated a feature for agents to use pre-configured stock messages.
    - Agents can quickly respond to common inquiries with predefined messages.
+  
+![Screenshot (392)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/93586851-bce3-4246-91ae-b3d78c9c2b99)
 
 9. **Real-time Updates**:
    - Leveraged websockets to make the agent UI interactive and dynamic.
    - New incoming messages appear in real time and notifications appears.
+
+![Screenshot (395)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/8891e2f5-2254-4076-b798-f890393b772a)
+
 
 Feel free to explore this application and its functionalities by following the steps mentioned in the README.
 
