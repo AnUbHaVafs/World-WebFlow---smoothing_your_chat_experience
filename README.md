@@ -17,6 +17,9 @@ Below are the implemented functionalities:
 3. **Message Storage and Display**:
    - Customer service messages provided in a CSV file are stored in a chosen database.
    - Messages are displayed in the agent portal for easy viewing and response.
+   
+![Screenshot (387)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/5513e24e-99cd-41eb-b219-7a58b741d6ef)
+
 
 4. **Agent Workload Management**:
    - Implemented a scheme to prevent multiple agents from working on the same message using status : unresolved | pending | resolved and using real-time typing notations.
