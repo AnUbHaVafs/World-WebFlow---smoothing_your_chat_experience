@@ -20,8 +20,10 @@ Before you begin, ensure you have met the following requirements:
    git clone https://github.com/your-username/your-project.git
 
 2. Navigate to the project directory:
+    ```bash
   cd your-project
 
 3. Install frontend dependencies:
+    ```bash
   cd client
   npm install
