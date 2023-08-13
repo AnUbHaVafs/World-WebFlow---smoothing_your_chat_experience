@@ -27,3 +27,13 @@ Before you begin, ensure you have met the following requirements:
     ```bash
    cd client
    npm install
+4. Install backend dependencies:
+     ```bash
+    cd ../server
+    npm install
+
+## Configuration
+
+1. Create a `.env` file in the `server` directory for environment variables:
+     
+            
