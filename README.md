@@ -1,12 +1,8 @@
 # Branch-International---WEB-CHAT-APP (For Agents)
 Web Chat App ( Managing all Agent's Responses)
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Project Name - README</title>
-</head>
-<body>
+    <h2>Project Name - README</h2>
+
     <h1>Project Name</h1>
     <p>Brief description of your project.</p>
 
@@ -75,12 +71,3 @@ MONGO_URI=mongodb://localhost:27017/your-database-name
     </ol>
     <p>On Windows, close the command prompt where <code>mongod</code> is running.<br>On macOS or Linux, run:</p>
     <pre><code>sudo service mongod stop</code></pre>
-</body>
-</html>
-
-
-On macOS or Linux, run:
-
-bash
-Copy code
-sudo service mongod stop
