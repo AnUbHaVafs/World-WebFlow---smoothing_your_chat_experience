@@ -4,7 +4,7 @@ Web Chat App ( Managing all Agent's Responses)
 
 # Functionalities Implemented [All : Basic + App Extend]
 
-This messaging web application enables a streamlined process for responding to customer inquiries. Below are the implemented functionalities:
+Below are the implemented functionalities:
 
 1. **Agent Portal**:
    - Multiple agents can log in simultaneously to respond to incoming messages.
