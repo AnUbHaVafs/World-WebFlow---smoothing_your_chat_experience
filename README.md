@@ -5,6 +5,59 @@ Web Chat App ( Managing all Agent's Responses)
 
 Brief description of your project.
 
+# Functionalities Implemented
+
+This messaging web application enables a streamlined process for responding to customer inquiries. Below are the implemented functionalities:
+
+1. **Agent Portal**:
+   - Multiple agents can log in simultaneously to respond to incoming messages.
+   - Agents are presented with an intuitive UI to manage customer inquiries.
+
+2. **API Integration**:
+   - Created an API endpoint to send and receive customer messages.
+   - Messages can be submitted through a web form and are stored in the system.
+
+3. **Message Storage and Display**:
+   - Customer service messages provided in a CSV file are stored in a chosen database.
+   - Messages are displayed in the agent portal for easy viewing and response.
+
+4. **Agent Workload Management**:
+   - Implemented a scheme to prevent multiple agents from working on the same message.
+   - Agents can divide work efficiently, ensuring timely responses.
+
+5. **Message Prioritization**:
+   - Designed a prioritization system to identify urgent messages for immediate attention.
+   - Messages related to critical inquiries are highlighted for prompt response.
+
+6. **Search Functionality**:
+   - Implemented a search feature allowing agents to search messages and customers.
+   - Enhanced user experience by making specific messages easier to locate.
+
+7. **Customer Context**:
+   - Provided agents with additional context by surfacing customer profiles and relevant internal information.
+   - Agents can better tailor responses with contextual knowledge.
+
+8. **Canned Responses**:
+   - Incorporated a feature for agents to use pre-configured stock messages.
+   - Agents can quickly respond to common inquiries with predefined messages.
+
+9. **Real-time Updates**:
+   - Leveraged websockets to make the agent UI interactive and dynamic.
+   - New incoming messages appear in real time for improved responsiveness.
+
+10. **Hosting and Deployment**:
+    - Deployed the application for accessibility.
+    - The hosted version allows users to interact with the application online.
+
+11. **Video Demonstration**:
+    - Created a video showcasing the application's functionality.
+    - The video provides a concise walkthrough of key aspects of the application.
+
+Feel free to explore this application and its functionalities by following the steps mentioned in the README.
+
+> Note: The README instructions provided earlier in this document guide you on setting up and running the application on your local machine.
+
+
 # Technologies Used
 
 This project was built using the following technologies:
