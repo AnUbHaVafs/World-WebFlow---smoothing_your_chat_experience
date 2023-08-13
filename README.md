@@ -55,9 +55,8 @@ Replace `your-database-name` with the desired name for your MongoDB database.
 
 2. Start the backend server:            
   ```bash
-  cd server
-  npm run start
-
+   cd server
+   npm run start
 
 The backend server will run on `http://localhost:5000`.
 
