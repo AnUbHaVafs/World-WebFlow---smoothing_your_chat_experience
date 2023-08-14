@@ -11,7 +11,7 @@ Below are the implemented functionalities:
    - Multiple agents can log in simultaneously to respond to incoming messages.
    - Agents are presented with an intuitive UI to manage customer inquiries.
 
- ![Screenshot (402)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/058ef52b-21ed-45cf-b300-76ad3842c969)
+![Screenshot (402)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/e4cb6d23-4bee-4985-aa63-d088b3bf2dd0)
 
 
 2. **API Integration**:
