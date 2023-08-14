@@ -112,6 +112,8 @@ Before you begin, ensure you have met the following requirements:
      ```
      PORT=5000
      MONGO_URI=mongodb://localhost:27017/your-database-name
+     JWT_SECRET=YOUR_TOKEN_JWT
+     NODE_ENV=production
      
 Replace `your-database-name` with the desired name for your MongoDB database.
 
