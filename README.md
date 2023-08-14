@@ -1,6 +1,7 @@
 # Branch-International---WEB-CHAT-APP (For Agents)
 Web Chat App ( Managing all Agent's Responses)
-//video
+Visit : 
+https://screenapp.io/app/#/shared/84236021-31c8-4766-91c8-5a63b222cc2b
 
 # Functionalities Implemented [All : Basic + App Extend]
 
@@ -98,11 +99,11 @@ Before you begin, ensure you have met the following requirements:
 
 3. Install frontend dependencies:
     ```bash
-   cd client
+   cd Frontend
    npm install
 4. Install backend dependencies:
      ```bash
-    cd ../server
+    cd ..
     npm install
 
 ## Configuration
@@ -135,10 +136,10 @@ The backend server will run on `http://localhost:5000`.
 
 3. Start the frontend development server:
       ```bash
-      cd ../client
+      cd ../Frontend
       npm run dev
 
-The frontend development server will run on `http://localhost:3000`.
+The frontend development server will run on `http://localhost:5173`.
 
 ## Accessing the Application
 
