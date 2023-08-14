@@ -54,6 +54,8 @@ Below are the implemented functionalities:
 
 ![Screenshot (395)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/0ea7c7b0-a956-4328-87e1-b93510f2c9d3)
 
+Postman (APIs Testing) :
+![Screenshot (406)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/4c6031c8-8008-4330-8534-ee09b1c6b8a3)
 
 Feel free to explore this application and its functionalities by following the steps mentioned in the README.
 
