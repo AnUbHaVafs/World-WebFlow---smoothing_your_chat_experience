@@ -342,8 +342,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
           justifyContent="center"
           h="100%"
         >
-          <Text fontSize="3xl" pb={3} fontFamily="Work sans">
-            Click on a user to start chatting
+          <Text fontSize="5xl" pb={3} fontFamily="Qwitcher Grypen">
+            Create a <span style={{ color: "blue" }}>flow</span> with your
+            friend
           </Text>
         </Box>
       )}

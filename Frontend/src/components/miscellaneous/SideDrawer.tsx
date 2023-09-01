@@ -152,11 +152,18 @@ const SideDrawer = () => {
           </Button>
         </Tooltip>
         <Text
-          style={{ textDecoration: "underline" }}
+          style={{ fontFamily: "Dancing Script" }}
           fontSize="2xl"
           fontFamily="Work sans"
         >
-          Branch International - Agents App
+          <span style={{ fontSize: "50px", color: "#6f0000" }}>
+            World Webflow
+          </span>
+          <span>
+            {" "}
+            - Smoothing your
+            <span style={{ color: "blue" }}> chat experience</span>
+          </span>
         </Text>
         <div>
           <Menu>

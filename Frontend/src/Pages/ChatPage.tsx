@@ -29,6 +29,7 @@ const ChatPage: any = () => {
         w="100%"
         h="91.5vh"
         p="10px"
+        backgroundColor={"white"}
       >
         {user && <MyChats fetchAgain={fetchAgain} />}
         {user && (
