@@ -1,4 +1,6 @@
-// import React from "react";
+import React from "react";
+import "./SetFlowModals.css";
+// import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
   Modal,
   ModalOverlay,
@@ -14,21 +16,32 @@ import {
   useToast,
   Box,
 } from "@chakra-ui/react";
+import DateTimePicker from "react-datetime-picker";
+import "react-datetime-picker/dist/DateTimePicker.css";
+import "react-calendar/dist/Calendar.css";
+import "react-clock/dist/Clock.css";
 import axios from "axios";
 import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
+// import { IonDatetime } from "@ionic/react";
 
-// type Props = {};
+const SetFlowModals = (props: any) => {
+  const { setFlowModal, flowModal, children } = props;
 
-const GroupChatModal: any = ({ children }: any) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const handleModalOpen = (flowModalVal: boolean) => {
+    flowModalVal ? setFlowModal(false) : setFlowModal(true);
+  };
+
+  const { onClose } = useDisclosure();
+  const [value, onChange] = useState<any>(new Date());
   const [groupChatName, setGroupChatName] = useState<any>();
   const [selectedUsers, setSelectedUsers] = useState<any>([]);
   const [search, setSearch] = useState<any>("");
   const [searchResult, setSearchResult] = useState<any>([]);
   const [loading, setLoading] = useState<any>(false);
+  const [openDateModal, setOpenDateModal] = useState<boolean>(false);
   const toast = useToast();
 
   const { user, chats, setChats } = ChatState();
@@ -87,7 +100,7 @@ const GroupChatModal: any = ({ children }: any) => {
   };
 
   const handleSubmit = async () => {
-    if (!groupChatName || !selectedUsers) {
+    if (!value || !groupChatName || !selectedUsers) {
       toast({
         title: "Please fill all the feilds",
         status: "warning",
@@ -97,6 +110,16 @@ const GroupChatModal: any = ({ children }: any) => {
       });
       return;
     }
+    const dateObject = new Date(value);
+    const isoFormat = dateObject.toISOString();
+    const receiversIds = selectedUsers.map((u: any) => u._id);
+
+    const payload = {
+      sender: user._id,
+      message: groupChatName,
+      receivers: receiversIds,
+      flowTime: isoFormat,
+    };
 
     try {
       const config = {
@@ -105,17 +128,15 @@ const GroupChatModal: any = ({ children }: any) => {
         },
       };
       const { data } = await axios.post(
-        `http://localhost:5000/api/chat/group`,
-        {
-          name: groupChatName,
-          users: JSON.stringify(selectedUsers.map((u: any) => u._id)),
-        },
+        `http://localhost:5000/api/flow`,
+        payload,
         config
       );
-      setChats([data, ...chats]);
+      console.log(data._id);
+
       onClose();
       toast({
-        title: "Group Chat Created!",
+        title: "Flow has been Set!",
         status: "success",
         duration: 5000,
         isClosable: true,
@@ -123,7 +144,7 @@ const GroupChatModal: any = ({ children }: any) => {
       });
     } catch (error: any) {
       toast({
-        title: "Failed to Create the Chat!",
+        title: "Flow has not set!",
         description: error.response.data,
         status: "error",
         duration: 5000,
@@ -135,8 +156,12 @@ const GroupChatModal: any = ({ children }: any) => {
 
   return (
     <>
-      <span onClick={onOpen}>{children}</span>
-      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+      <span onClick={() => handleModalOpen(flowModal)}>{children}</span>
+      <Modal
+        onClose={() => handleModalOpen(flowModal)}
+        isOpen={flowModal}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader
@@ -145,20 +170,20 @@ const GroupChatModal: any = ({ children }: any) => {
             display="flex"
             justifyContent="center"
           >
-            Create Group Chat
+            Set Flow Alarm
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody display="flex" flexDir="column" alignItems="center">
             <FormControl>
               <Input
-                placeholder="Chat Name"
+                placeholder="Your Message"
                 mb={3}
                 onChange={(e) => setGroupChatName(e.target.value)}
               />
             </FormControl>
             <FormControl>
               <Input
-                placeholder="Add Users eg: John, Piyush, Jane"
+                placeholder="Flow Receivers - eg: John, Piyush, Jane"
                 mb={1}
                 onChange={(e) => handleSearch(e.target.value)}
               />
@@ -186,10 +211,20 @@ const GroupChatModal: any = ({ children }: any) => {
                   />
                 ))
             )}
+            {/* <button onClick={() => setOpenDateModal(true)}>
+              Open Date Picker
+            </button> */}
+            <DateTimePicker
+              className={"date-picker"}
+              onChange={onChange}
+              value={value}
+              calendarClassName={"calender-picker"}
+              minDate={new Date()}
+            ></DateTimePicker>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={handleSubmit} colorScheme="blue">
-              Create Chat
+            <Button onClick={() => handleSubmit()} colorScheme="blue">
+              Set Flow
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -198,4 +233,36 @@ const GroupChatModal: any = ({ children }: any) => {
   );
 };
 
-export default GroupChatModal;
+export default SetFlowModals;
+
+{
+  /* <div className={openDateModal ? "active popup" : "popup"} id="popup-1">
+  <div className="overlay"></div>
+  <div className="content">
+    <h2>Hello</h2>
+    <button
+      onClick={() => {
+        handleModalOpen(flowModal);
+      }}
+    >
+      Close
+    </button>
+  </div>
+</div> */
+}
+//  <div className={openDateModal ? "active popup" : "popup"} id="popup-1">
+//    <div className="overlay"></div>
+//    <div className="content">
+//      <h2>Hello</h2>
+//      {/* <IonDatetime></IonDatetime> */}
+//      {/* <DatePicker label="Basic date picker" /> */}
+
+//      <button
+//        onClick={() => {
+//          handleModalOpen(flowModal);
+//        }}
+//      >
+//        Close
+//      </button>
+//    </div>
+//  </div>;

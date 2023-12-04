@@ -30,18 +30,21 @@ import animationData from "../animations/typing.json";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
+import { generateReponse } from "../helpers/helpers.js";
 const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket: any, selectedChatCompare: any;
 
 // type Props = {};
 
 const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
+  const [prompt, setPrompt] = useState("");
+  const [response, setResponse] = useState("");
   const [messages, setMessages] = useState<any>([]);
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [newMessage, setNewMessage] = useState<any>("");
-  const [socketConnected, setSocketConnected] = useState<Boolean>(false);
-  const [typing, setTyping] = useState<Boolean>(false);
-  const [istyping, setIsTyping] = useState<Boolean>(false);
+  const [socketConnected, setSocketConnected] = useState<boolean>(false);
+  const [typing, setTyping] = useState<boolean>(false);
+  const [istyping, setIsTyping] = useState<boolean>(false);
   const toast = useToast();
 
   const [size, setSize] = useState("md");
@@ -78,6 +81,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
         `http://localhost:5000/api/message/${selectedChat._id}`,
         config
       );
+      console.log(data);
       setMessages(data);
       setLoading(false);
 
@@ -104,6 +108,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
             Authorization: `Bearer ${user.token}`,
           },
         };
+        // console.log(newMessage, selectedChat);
         setNewMessage("");
         const { data } = await axios.post(
           "http://localhost:5000/api/message",
@@ -115,6 +120,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
         );
         socket.emit("new message", data);
         setMessages([...messages, data]);
+        fetchMessages();
       } catch (error) {
         toast({
           title: "Error Occured!",
@@ -134,12 +140,55 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
     socket.on("stop typing", () => setIsTyping(false));
+    // socket.on("flowMessage", () => handleFlowMessage());
 
     //  eslint-disable-next-line
   }, []);
 
+  const handleGenerateResponse = async (isAnyQuery: boolean) => {
+    let query = "";
+    if (messages.length) {
+      query = messages[messages.length - 1].content;
+    } else {
+      query = "Hello!";
+    }
+    // console.log(query);
+
+    if (selectedChat?.latestMessage?.content) {
+      if (!isAnyQuery) {
+        query =
+          "Generate a random question which usually highly skilled Software Engineer while collaborating with other Software Engineers working together on a crucial project ask in range of 40 words and question should be technical?";
+      } else {
+        query += "generate a response to this in 50 words!";
+      }
+      console.log(query);
+      const res = await generateReponse(query);
+      console.log(res);
+      setResponse(res);
+      setNewMessage(res);
+      fetchMessages();
+
+      toast({
+        title: "Message Sent!",
+        description: "Auto messaging is on!",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  };
+
   useEffect(() => {
+    // console.log(selectedChat);
     fetchMessages();
+
+    // console.log(selectedChat?.latestMessage?.content, user._id);
+    if (selectedChat?.latestMessage?.content) {
+      const lastMessage = selectedChat?.latestMessage?.content;
+      console.log(lastMessage);
+      setPrompt(lastMessage);
+    }
 
     selectedChatCompare = selectedChat;
     // eslint-disable-next-line
@@ -305,7 +354,25 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
                   spacing={4}
                   align="center"
                 >
-                  {Responses.map((response: any, i: number) => (
+                  <div className="generate-resp-btns">
+                    <Button
+                      style={{ width: "50%", height: "50px" }}
+                      colorScheme="teal"
+                      // variant="outline"
+                      onClick={() => handleGenerateResponse(true)}
+                    >
+                      {"Generate Response"}
+                    </Button>
+                    <Button
+                      style={{ width: "50%", height: "50px" }}
+                      colorScheme="teal"
+                      // variant="outline"
+                      onClick={() => handleGenerateResponse(false)}
+                    >
+                      {"Start Flow"}
+                    </Button>
+                  </div>
+                  {Responses.map((response: any) => (
                     <Button
                       style={{ width: "95%", height: "50px" }}
                       colorScheme="teal"

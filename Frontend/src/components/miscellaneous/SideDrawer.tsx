@@ -2,6 +2,9 @@ import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
+import { LuAlarmCheck } from "react-icons/lu";
+import { LuArrowRightToLine, LuArrowLeftToLine } from "react-icons/lu";
+import io from "socket.io-client";
 import {
   Menu,
   MenuButton,
@@ -20,7 +23,7 @@ import { Tooltip } from "@chakra-ui/tooltip";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
 import ChatLoading from "../ChatLoading";
@@ -31,14 +34,27 @@ import { Effect } from "react-notification-badge";
 import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
+import "./sideDrawer.css";
+import SetFlowModals from "../Modals/SetFlowModals";
+var socket: any;
+const ENDPOINT = "http://localhost:5000";
 
-// type Props = {};
-
-const SideDrawer = () => {
+const SideDrawer = (props: any) => {
+  const { expand, setExpand } = props;
   const [search, setSearch] = useState<any>("");
+  const [titleText, setTitleText] = useState("chat experience");
+  const [flowReceiversNames, setFlowReceiversNames] = useState<string>("");
+  const [alarmModal, setAlarmModal] = useState(false);
   const [searchResult, setSearchResult] = useState<any>([]);
   const [loading, setLoading] = useState<any>(false);
   const [loadingChat, setLoadingChat] = useState<any>(false);
+  const synonymsOfTitle = [
+    "chat experience",
+    "communication",
+    "conversational",
+    "dialogue",
+    "interaction",
+  ];
 
   const {
     setSelectedChat,
@@ -57,6 +73,47 @@ const SideDrawer = () => {
     localStorage.removeItem("userInfo");
     navigate("/");
   };
+
+  const handleFlowMessage = (res: any, receiverObj: any) => {
+    if (!receiverObj) return;
+    console.log("Done here!", res, receiverObj);
+    const hasNames =
+      Object.keys(receiverObj).length > 0 && Boolean(receiverObj.name);
+    console.log(hasNames);
+    console.log(receiverObj.name);
+
+    if (hasNames) {
+      setFlowReceiversNames(receiverObj.name);
+      setNotification([...notification, res]);
+    }
+    // const names = hasNames ? (flowReceiversNames + " " + receiverObj.name) : flowReceiversNames;
+    // setFlowReceiversNames(names);
+    // setNotification([...notification, res]);
+  };
+
+  // Replace this function with your logic to generate new text
+  const generateSynonymsOfTitle = () => {
+    const randomIndex = Math.floor(Math.random() * 5);
+    return synonymsOfTitle[randomIndex];
+  };
+
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.on("flowMessage", (res: any, receiverObj: any) =>
+      handleFlowMessage(res, receiverObj)
+    );
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // Change the title text to a new value
+      const newText = generateSynonymsOfTitle(); // You can replace this function with your logic
+      setTitleText(newText);
+    }, 10000);
+
+    // Clean up the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, []);
 
   const handleSearch = async () => {
     if (!search) {
@@ -132,6 +189,11 @@ const SideDrawer = () => {
     }
   };
 
+  const handleAlarmSetModal = (alarmModalVal: boolean) => {
+    console.log("fired");
+    alarmModalVal ? setAlarmModal(false) : setAlarmModal(true);
+  };
+
   return (
     <>
       <Box
@@ -140,14 +202,16 @@ const SideDrawer = () => {
         alignItems="center"
         bg="white"
         w="100%"
-        p="5px 10px 5px 10px"
-        borderWidth="5px"
+        h="7%"
+        // p="5px 10px 5px 10px"
+        borderWidth="3px"
+        borderRadius={"3px"}
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
             <Text display={{ base: "none", md: "flex" }} px={4}>
-              Search User
+              Search Flow
             </Text>
           </Button>
         </Tooltip>
@@ -156,23 +220,39 @@ const SideDrawer = () => {
           fontSize="2xl"
           fontFamily="Work sans"
         >
-          <span style={{ fontSize: "50px", color: "#6f0000" }}>
+          <span style={{ fontSize: "45px", margin: "0px", color: "#6f0000" }}>
             World Webflow
           </span>
           <span>
             {" "}
             - Smoothing your
-            <span style={{ color: "blue" }}> chat experience</span>
+            <span className="titleText">{" " + titleText}</span>
           </span>
         </Text>
-        <div>
+        <div className="menus dfr">
+          {expand ? (
+            <LuArrowLeftToLine
+              class="IAmExpander"
+              onClick={() => setExpand(false)}
+            />
+          ) : (
+            <LuArrowRightToLine
+              class="IAmExpander"
+              onClick={() => setExpand(true)}
+            />
+          )}
+          <LuAlarmCheck
+            onClick={() => handleAlarmSetModal(alarmModal)}
+            class="IamAlarm"
+          />
+          {/* <ImAlarm></ImAlarm> */}
           <Menu>
             <MenuButton p={1}>
               <NotificationBadge
                 count={notification.length}
                 effect={Effect.SCALE}
               />
-              <BellIcon fontSize="2xl" m={1} />
+              <BellIcon className="notif-icon" fontSize="2xl" m={0} />
             </MenuButton>
             <MenuList pl={2}>
               {!notification.length && "No New Messages"}
@@ -188,13 +268,26 @@ const SideDrawer = () => {
                 >
                   {notif.chat.isGroupChat
                     ? `New Message in ${notif.chat.chatName}`
-                    : `New Message from ${getSender(user, notif.chat.users)}`}
+                    : `${
+                        flowReceiversNames.length > 0
+                          ? "Message Flow sent to all users: "
+                          : "New Message from"
+                      } ${
+                        flowReceiversNames.length > 0
+                          ? flowReceiversNames + "..."
+                          : getSender(user, notif.chat.users)
+                      }`}
                 </MenuItem>
               ))}
             </MenuList>
           </Menu>
           <Menu>
-            <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
+            <MenuButton
+              className="user-details"
+              as={Button}
+              bg="white"
+              rightIcon={<ChevronDownIcon className="profile" />}
+            >
               <Avatar
                 size="sm"
                 cursor="pointer"
@@ -212,6 +305,10 @@ const SideDrawer = () => {
           </Menu>
         </div>
       </Box>
+      <SetFlowModals
+        setFlowModal={setAlarmModal}
+        flowModal={alarmModal}
+      ></SetFlowModals>
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />

@@ -1,0 +1,37 @@
+.dfr{
+    display: flex;
+    flex-direction: row;
+}
+.menus {
+    /* background-color: yellow; */
+    justify-content: space-between;
+    gap: 20px;
+}
+.IamAlarm{
+    /* background-color: red; */
+    width: 25px;
+    height: 25px;
+    margin: auto;
+}
+.IamAlarm:hover {
+    cursor: pointer;
+}
+.IAmExpander {
+    /* background-color: red; */
+    width: 27px;
+    height: 30px;
+    margin: auto;
+    margin-top: 7px;
+    margin-right: 6px;
+}
+
+.IAmExpander:hover {
+    cursor: pointer;
+}
+.profile{
+    margin: 0px;
+}
+.titleText{
+    transition: opacity 0.8s ease-in-out !important;
+    color: blue;
+}

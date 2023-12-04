@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+// const NewUser = require("../models/newUserModel");
 const generateToken = require("../config/generateToken");
 
 //@description     Get or Search all users
@@ -7,16 +8,19 @@ const generateToken = require("../config/generateToken");
 //@access          Public
 const allUsers = asyncHandler(async (req, res) => {
   console.log(req.query);
-  const keyword = req.query.search
+
+  // Check if search term exists
+  const search = req.query.search ? req.query.search : "";
+  const keyword = search
     ? {
         $or: [
-          { name: { $regex: req.query.search, $options: "i" } },
-          { email: { $regex: req.query.search, $options: "i" } },
+          { name: { $regex: new RegExp(search, "i") } },
+          { email: { $regex: new RegExp(search, "i") } },
         ],
       }
     : {};
 
-  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+  const users = await User.find(keyword);
   res.send(users);
 });
 

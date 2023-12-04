@@ -5,9 +5,19 @@ const connectDB = require("./config/db.js");
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
+const newUserRoutes = require("./routes/newUserRoutes");
+const setFlowRoutes = require("./routes/setFlowRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+const { ToadScheduler, SimpleIntervalJob, Task } = require("toad-scheduler");
 const path = require("path");
+// const { setFlowMessages } = require("./helpers/setFlowMessages.js");
+const SetFlowModal = require("./models/setFlowModal.js");
+const Chat = require("./models/chatModel.js");
+const Message = require("./models/messageModel.js");
+const User = require("./models/userModel.js");
+// const Message = require("../models/messageModel");
+// const Chat = require("../models/chatModel");
 const app = express();
 
 app.use(cors());
@@ -19,6 +29,63 @@ connectDB();
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
+app.use("/api/newuser", newUserRoutes);
+app.use("/api/flow", setFlowRoutes);
+
+// --------------------------cron jon (toad scheduler)------------------------------
+const setFlowMessages = async () => {
+  try {
+    const userSetFlows = await SetFlowModal.find({});
+    const currentDateAndTime = new Date().toISOString();
+    userSetFlows.map((userSetFlow, i) => {
+      const date1 = new Date(currentDateAndTime);
+      const date2 = new Date(userSetFlow.flowTime);
+      const timeDifferenceInMilliseconds = Math.abs(date2 - date1);
+      const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
+      if (timeDifferenceInSeconds < 20) {
+        userSetFlow.receivers.map(async (receiverId, index) => {
+          const allBothUserMessages = await Chat.find({ isGroupChat: false });
+          allBothUserMessages.map((chat) => {
+            if (!Boolean(chat.users) || !Boolean(chat.users.length)) return;
+            const user1 = chat.users[0];
+            const user2 = chat.users[1];
+            const hasReceiver = chat.users.includes(receiverId);
+            const hasSender = chat.users.includes(userSetFlow.sender);
+            const hasBoth = hasReceiver && hasSender;
+            if (hasBoth) {
+              const newMessage = {
+                sender: userSetFlow.sender,
+                content: userSetFlow.message,
+                chat: chat,
+              };
+              // console.log(receiverId);
+              let receiverObj;
+              User.findById(receiverId).then((user) => {
+                receiverObj = user;
+                // console.log("user-->", user);
+              });
+              // console.log("receiverObj-->", receiverObj);
+              Message.create(newMessage).then((res) => {
+                console.log("-->", receiverObj);
+                io.emit("flowMessage", res, receiverObj);
+              });
+            }
+          });
+        });
+      }
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const scheduler = new ToadScheduler();
+const task = new Task("simple task", () => {
+  setFlowMessages();
+});
+const job = new SimpleIntervalJob({ seconds: 20 }, task);
+
+scheduler.addSimpleIntervalJob(job);
 
 // --------------------------deployment------------------------------
 
@@ -39,19 +106,6 @@ if (process.env.NODE_ENV === "production") {
 // Error Handling middlewares
 app.use(notFound);
 app.use(errorHandler);
-
-// app.get("/", (req, res) => {
-//   res.send("Get API!");
-// });
-
-// app.get("/api/chat", (req, res) => {
-//   res.send(chats);
-// });
-
-// app.get("/api/chat/:id", (req, res) => {
-//   const singleChat = chats.find((chat) => chat._id === req.params.id);
-//   res.send(singleChat);
-// });
 
 const PORT = process.env.PORT || 5000;
 

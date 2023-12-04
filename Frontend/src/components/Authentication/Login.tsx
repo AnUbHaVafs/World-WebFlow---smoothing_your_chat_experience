@@ -116,6 +116,7 @@ const Login = () => {
       >
         Get Guest User Credentials
       </Button>
+      <div id="signInDiv"></div>
     </VStack>
   );
 };
