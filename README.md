@@ -15,6 +15,15 @@ Below are the implemented functionalities:
 1. **Agent Portal**:
    - Multiple agents can log in simultaneously to respond to incoming messages.
    - Agents are presented with an intuitive UI to manage customer inquiries.
+  
+   - ![Screenshot (1899)](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/f5c1daa6-de58-4dfa-8555-741e7c1c508e)
+   - ![Screenshot (1901)](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/5df03e84-ebc6-443d-9e76-d47afdf5bee1)
+
+![Screenshot (1900)](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/c97c7c9b-34a8-46cd-bf24-7a1156812ad4)
+![Screenshot (1904)](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/4e4bdbf0-c605-403c-9f0e-d5f6b6e7f693)
+![Screenshot (1903)](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/b925805a-f01e-4228-ab77-75d18ac1cd47)
+
+
 
 ![Screenshot (402)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/e4cb6d23-4bee-4985-aa63-d088b3bf2dd0)
 
