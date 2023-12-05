@@ -3,11 +3,8 @@
 
 Visit :  https://screenapp.io/app/#/shared/84236021-31c8-4766-91c8-5a63b222cc2b
 <br><br><br>
-
-![Screenshot (579)](https://github.com/AnUbHaVafs/Branch-International---WEB-CHAT-APP/assets/76126067/4e0704de-0825-4477-afd9-ac78af54ff97)
-
-
-
+- ![Screenshot (1899)](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/f5c1daa6-de58-4dfa-8555-741e7c1c508e)
+- 
 # Functionalities Implemented:
 
 Below are the implemented functionalities:
