@@ -25,8 +25,8 @@ export const isUserLoggedIn:any = (userInfo:any)=>{
   }
   return false;
 
-  // const secretKey = import.meta.env.VITE_JWT_SECRET;
-  // console.log(import.meta.env.VITE_JWT_SECRET);
+  // const secretKey = import.meta.env.REACT_APP_VITE_JWT_SECRET;
+  // console.log(import.meta.env.REACT_APP_VITE_JWT_SECRET);
   // console.log(userInfo);
   // console.log();  
 };
