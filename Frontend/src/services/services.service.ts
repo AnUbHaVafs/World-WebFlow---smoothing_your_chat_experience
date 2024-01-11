@@ -2,7 +2,7 @@
 import { jwtDecode } from 'jwt-decode';
 
 export const postUser = async (payload:any)=>{
-    const res = await fetch('http://localhost:5000/api/newuser/google-login',{
+    const res = await fetch('https://world-webflow-backend-only-2.onrender.com/api/newuser/google-login',{
       method:"POST",
       headers: new Headers({
         "Content-type": "application/json",

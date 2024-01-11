@@ -37,7 +37,7 @@ import { ChatState } from "../../Context/ChatProvider";
 import "./sideDrawer.css";
 import SetFlowModals from "../Modals/SetFlowModals";
 var socket: any;
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://world-webflow-backend-only-2.onrender.com";
 
 const SideDrawer = (props: any) => {
   const { expand, setExpand } = props;
@@ -137,7 +137,7 @@ const SideDrawer = (props: any) => {
       };
 
       const { data } = await axios.get(
-        `http://localhost:5000/api/user?search=${search}`,
+        `https://world-webflow-backend-only-2.onrender.com/api/user?search=${search}`,
         config
       );
 
@@ -167,7 +167,7 @@ const SideDrawer = (props: any) => {
         },
       };
       const { data } = await axios.post(
-        `http://localhost:5000/api/chat`,
+        `https://world-webflow-backend-only-2.onrender.com/api/chat`,
         { userId },
         config
       );

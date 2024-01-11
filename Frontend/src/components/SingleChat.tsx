@@ -31,7 +31,7 @@ import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
 import { generateReponse } from "../helpers/helpers.js";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "https://world-webflow-backend-only-2.onrender.com"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket: any, selectedChatCompare: any;
 
 // type Props = {};
@@ -111,7 +111,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
         // console.log(newMessage, selectedChat);
         setNewMessage("");
         const { data } = await axios.post(
-          "http://localhost:5000/api/message",
+          "https://world-webflow-backend-only-2.onrender.com/api/message",
           {
             content: newMessage,
             chatId: selectedChat,
