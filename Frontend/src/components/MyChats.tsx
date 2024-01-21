@@ -33,7 +33,7 @@ const MyChats: any = ({ fetchAgain, expand }: any): any => {
         },
       };
       const { data } = await axios.get(
-        "https://world-webflow-backend-only-2.onrender.com/api/chat",
+        "https://world-webflow-backend-1.onrender.com/api/chat",
         config
       );
       setChats(data);

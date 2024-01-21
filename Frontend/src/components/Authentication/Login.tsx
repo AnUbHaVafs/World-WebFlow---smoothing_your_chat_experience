@@ -40,7 +40,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "https://world-webflow-backend-only-2.onrender.com/api/user/login",
+        "https://world-webflow-backend-1.onrender.com/api/user/login",
         { email, password },
         config
       );

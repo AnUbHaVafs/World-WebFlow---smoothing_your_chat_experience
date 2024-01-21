@@ -62,7 +62,7 @@ const GroupChatModal: any = ({ children }: any) => {
         },
       };
       const { data } = await axios.get(
-        `https://world-webflow-backend-only-2.onrender.com/api/user?search=${search}`,
+        `https://world-webflow-backend-1.onrender.com/api/user?search=${search}`,
         config
       );
       console.log(data);
@@ -105,7 +105,7 @@ const GroupChatModal: any = ({ children }: any) => {
         },
       };
       const { data } = await axios.post(
-        `https://world-webflow-backend-only-2.onrender.com/api/chat/group`,
+        `https://world-webflow-backend-1.onrender.com/api/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u: any) => u._id)),

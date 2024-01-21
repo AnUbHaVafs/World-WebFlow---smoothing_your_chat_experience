@@ -51,7 +51,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "https://world-webflow-backend-only-2.onrender.com/api/user",
+        "https://world-webflow-backend-1.onrender.com/api/user",
         {
           name,
           email,
