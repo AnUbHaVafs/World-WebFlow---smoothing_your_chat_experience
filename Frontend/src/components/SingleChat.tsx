@@ -78,7 +78,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `http://localhost:5000/api/message/${selectedChat._id}`,
+        `https://world-webflow-backend-1.onrender.com/api/message/${selectedChat._id}`,
         config
       );
       console.log(data);
