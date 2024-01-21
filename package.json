@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix Frontend && npm install typescript --legacy-peer-deps --prefix Frontend && npm run build --prefix Frontend"
+    "build": "npm install --legacy-peer-deps"
   },
   "author": "Anubhav Agrawal",
   "license": "ISC",
