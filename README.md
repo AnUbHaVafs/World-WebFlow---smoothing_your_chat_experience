@@ -3,10 +3,10 @@
 
 Visit :  https://screenapp.io/app/#/shared/84236021-31c8-4766-91c8-5a63b222cc2b
 <br><br><br>
+![Mobile UI (2)](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/7cc2d331-05c5-495f-8269-43945ec7d813)
 
-![Mobile App View](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/e9e5efcc-c2da-415d-9b5d-04c671d7756d)
+![Screenshot (2565)](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/96aa4d89-b4d2-41b2-a8fc-24ae8431825c)
 
-- ![Screenshot (1899)](https://github.com/AnUbHaVafs/World-WebFlow---smoothing_your_chat_experience/assets/76126067/f5c1daa6-de58-4dfa-8555-741e7c1c508e)
 - 
 # Functionalities Implemented:
 
