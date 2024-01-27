@@ -13,12 +13,12 @@ export const handleUserLogin = async (decoded: any) => {
 };
 
 export const generateReponse = async (prompt: string) => {
-  console.log(import.meta.env.VITE_REACT_APP_OPENAI_API_KEYs);
+  // console.log(import.meta.env.VITE_REACT_APP_OPENAI_API_KEYs);
   const requestOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.VITE_REACT_APP_OPENAI_API_KEYs}`,
+      Authorization: `Bearer ${import.meta.env.VITE_REACT_APP_OPENAI_API_KEYs}`,
     },
     body: JSON.stringify({ prompt }),
   };
