@@ -59,6 +59,18 @@ const MyChats: any = ({ fetchAgain, expand }: any): any => {
     // eslint-disable-next-line
   }, [fetchAgain]);
 
+  const handleSelectChat = (chatObj:any)=>{
+    setSelectedChat(chatObj);
+    toast({
+      title: "Good Work!",
+      description: "Don't Forget to use Our Automation Tools",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: "bottom-left",
+    });
+  }
+
   return (
     <Box
       className="chats"
@@ -81,7 +93,7 @@ const MyChats: any = ({ fetchAgain, expand }: any): any => {
         justifyContent="space-between"
         alignItems="center"
       >
-        Flows
+        {/* Flows */}
         <GroupChatModal>
           <Button
             display="flex"
@@ -96,7 +108,7 @@ const MyChats: any = ({ fetchAgain, expand }: any): any => {
         display="flex"
         flexDir={expand ? "row" : "column"}
         p={3}
-        bg="#F8F8F8"
+        // bg="#F8F8F8"
         w="100%"
         h="100%"
         borderRadius="lg"
@@ -107,7 +119,7 @@ const MyChats: any = ({ fetchAgain, expand }: any): any => {
             {chats.map((chat: any) => (
               <Box
                 className={expand ? "each-chat" : ""}
-                onClick={() => setSelectedChat(chat)}
+                onClick={() => handleSelectChat(chat)}
                 cursor="pointer"
                 bg={selectedChat === chat ? "#38B2AC" : expand ? "" : "#E8E8E8"}
                 color={selectedChat === chat ? "white" : "black"}

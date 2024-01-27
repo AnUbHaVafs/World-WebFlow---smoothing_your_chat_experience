@@ -109,7 +109,7 @@ const SideDrawer = (props: any) => {
       // Change the title text to a new value
       const newText = generateSynonymsOfTitle(); // You can replace this function with your logic
       setTitleText(newText);
-    }, 10000);
+    }, 4000);
 
     // Clean up the interval when the component is unmounted
     return () => clearInterval(intervalId);
@@ -200,15 +200,16 @@ const SideDrawer = (props: any) => {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="white"
         w="100%"
         h="7%"
-        // p="5px 10px 5px 10px"
-        borderWidth="3px"
-        borderRadius={"3px"}
+        className="header-box"
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
-          <Button variant="ghost" onClick={onOpen}>
+          <Button
+            className="search-users-up-button"
+            variant="ghost"
+            onClick={onOpen}
+          >
             <i className="fas fa-search"></i>
             <Text display={{ base: "none", md: "flex" }} px={4}>
               Search Flow
@@ -216,20 +217,35 @@ const SideDrawer = (props: any) => {
           </Button>
         </Tooltip>
         <Text
-          style={{ fontFamily: "Dancing Script" }}
+          // style={{ fontFamily: "Dancing Script" }}
           fontSize="2xl"
           fontFamily="Work sans"
         >
-          <span style={{ fontSize: "45px", margin: "0px", color: "#6f0000" }}>
+          <span
+            className="header-title"
+            style={{ fontSize: "38px", margin: "0px", color: "#6f0000" }}
+          >
             World Webflow
           </span>
-          <span>
+          <span className="header-sub-title">
             {" "}
-            - Smoothing your
+            - Smoothing
             <span className="titleText">{" " + titleText}</span>
           </span>
         </Text>
         <div className="menus dfr">
+          <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
+            <Button
+              className="search-users-down-button"
+              variant="ghost"
+              onClick={onOpen}
+            >
+              <i className="fas fa-search"></i>
+              <Text display={{ base: "none", md: "flex" }} px={4}>
+                Search Flow
+              </Text>
+            </Button>
+          </Tooltip>
           {expand ? (
             <LuArrowLeftToLine
               class="IAmExpander"
@@ -245,6 +261,7 @@ const SideDrawer = (props: any) => {
             onClick={() => handleAlarmSetModal(alarmModal)}
             class="IamAlarm"
           />
+
           {/* <ImAlarm></ImAlarm> */}
           <Menu>
             <MenuButton p={1}>
@@ -281,6 +298,7 @@ const SideDrawer = (props: any) => {
               ))}
             </MenuList>
           </Menu>
+
           <Menu>
             <MenuButton
               className="user-details"

@@ -136,6 +136,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
 
   useEffect(() => {
     socket = io(ENDPOINT);
+    toast({
+      title: "Room Connected!",
+      description: "Enjoy your flow...",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+      position: "bottom",
+    });
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
@@ -150,11 +158,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
     if (messages.length) {
       query = messages[messages.length - 1].content;
     } else {
-      query = "Hello!";
+      query = "Generate a random response about Frontend Development advanced concepts.";
     }
     // console.log(query);
-
-    if (selectedChat?.latestMessage?.content) {
+      if (selectedChat?.latestMessage?.content) {
       if (!isAnyQuery) {
         query =
           "Generate a random question which usually highly skilled Software Engineer while collaborating with other Software Engineers working together on a crucial project ask in range of 40 words and question should be technical?";
@@ -176,7 +183,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
         isClosable: true,
         position: "bottom",
       });
+      return;
     }
+    toast({
+      title: "Hey? You Forgot it's a Group Chat!",
+      description: "Response Automation is not allowed in Group Chats!",
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+      position: "bottom",
+    });
   };
 
   useEffect(() => {
@@ -219,11 +235,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }: any) => {
       setTyping(true);
       socket.emit("typing", selectedChat._id);
     }
-    let lastTypingTime = new Date().getTime();
-    var timerLength = 3000;
+    const lastTypingTime = new Date().getTime();
+    const timerLength = 3000;
     setTimeout(() => {
-      var timeNow = new Date().getTime();
-      var timeDiff = timeNow - lastTypingTime;
+      const timeNow = new Date().getTime();
+      const timeDiff = timeNow - lastTypingTime;
       if (timeDiff >= timerLength && typing) {
         socket.emit("stop typing", selectedChat._id);
         setTyping(false);

@@ -13,19 +13,18 @@ export const handleUserLogin = async (decoded: any) => {
 };
 
 export const generateReponse = async (prompt: string) => {
+  console.log(import.meta.env.REACT_APP_VITE_REACT_APP_OPENAI_API_KEYs);
   const requestOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${
-        import.meta.env.REACT_APP_VITE_REACT_APP_OPENAI_API_KEYs
-      }`,
+      Authorization: `Bearer ${import.meta.env.VITE_REACT_APP_OPENAI_API_KEYs}`,
     },
     body: JSON.stringify({ prompt }),
   };
 
   const response = await fetch(
-    "https://api.openai.com/v1/engines/text-davinci-003/completions",
+    "https://api.openai.com/v1/engines/gpt-3.5-turbo-instruct/completions",
     requestOptions
   );
   const data = await response.json();

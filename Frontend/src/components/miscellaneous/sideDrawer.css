@@ -35,3 +35,47 @@
     transition: opacity 0.8s ease-in-out !important;
     color: blue;
 }
+.header-box{
+    background-color: rgb(247, 131, 131) !important;
+}
+.user-details{
+    background-color: rgb(240, 149, 149) !important;
+}
+.search-users-down-button{
+    display: none !important;
+}
+.search-users-up-button{
+    margin: auto 10px;
+}
+
+@media screen and (max-width: 1100px) {
+    .header-box {
+        /* background-color: red !important; */
+        flex-direction: column;
+    }
+    .menus{
+        /* background-color: blue; */
+        width: 100%;
+        justify-content: space-around;
+    }
+    .IAmExpander{
+        margin: auto 10px;
+        /* background-color: red; */
+    }
+    .IamAlarm{
+        margin: auto 10px;
+        /* background-color: red; */
+    }
+    .header-title{
+        font-size: 25px !important;
+    }
+    .search-users-up-button{
+        display: none !important;
+    }
+    .search-users-down-button {
+        display: flex !important;
+    }
+    .header-sub-title{
+        font-size: 13px !important;
+    }
+}
