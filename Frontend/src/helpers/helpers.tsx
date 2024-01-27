@@ -18,7 +18,7 @@ export const generateReponse = async (prompt: string) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_REACT_APP_OPENAI_API_KEYs}`,
+      Authorization: `Bearer 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`,
     },
     body: JSON.stringify({ prompt }),
   };
