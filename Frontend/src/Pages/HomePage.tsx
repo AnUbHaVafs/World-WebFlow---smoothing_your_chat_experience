@@ -32,25 +32,26 @@ function Homepage() {
         display="flex"
         justifyContent="center"
         p={3}
-        bg="white"
+        // bg="white"
+        color="lightBlue"
         w="100%"
         m="40px 0 15px 0"
-        borderRadius="lg"
-        borderWidth="1px"
+        // borderRadius="lg"
+        // borderWidth="1px"
       >
         <Text
-          fontSize="4xl"
+          fontSize="5xl"
           fontFamily="Work sans"
-          style={{ textDecoration: "underline" }}
+          // style={{ textDecoration: "underline" }}
         >
-          Branch International Agents
+          World Web Flow
         </Text>
       </Box>
       <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
             <Tab>Login</Tab>
-            <Tab>Sign Up</Tab>
+            <Tab>Create Account</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
