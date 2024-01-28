@@ -47,7 +47,7 @@ function Homepage() {
           World Web Flow
         </Text>
       </Box>
-      <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+      <Box bg="white" w="100%" p={4} borderRadius="20px" borderWidth="1px">
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
             <Tab>Login</Tab>
