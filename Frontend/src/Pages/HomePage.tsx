@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
 // import Signup from "../components/Authentication/Signup";
+import "./HomePage.css";
 
 function Homepage() {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ function Homepage() {
         // borderWidth="1px"
       >
         <Text
+          className="typewriter"
           fontSize="5xl"
           fontFamily="Work sans"
           // style={{ textDecoration: "underline" }}

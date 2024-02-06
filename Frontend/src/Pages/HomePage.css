@@ -1,0 +1,8 @@
+.typewriter {
+  animation: typing 2s steps(40, end);
+}
+
+@keyframes typing {
+  from { clip-path: inset(0% 100% 100% 0%); }
+  to { clip-path: inset(0% 0% 0% 0%); }
+}
