@@ -47,7 +47,8 @@ const SideDrawer = (props: any) => {
   const [alarmModal, setAlarmModal] = useState(false);
   const [searchResult, setSearchResult] = useState<any>([]);
   const [loading, setLoading] = useState<any>(false);
-  const [loadingChat, setLoadingChat] = useState<any>(false);
+  const [loadingChat, setLoadingChat] = useState<boolean>(false);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
   const synonymsOfTitle = [
     "chat experience",
     "communication",
@@ -109,6 +110,8 @@ const SideDrawer = (props: any) => {
       // Change the title text to a new value
       const newText = generateSynonymsOfTitle(); // You can replace this function with your logic
       setTitleText(newText);
+      setIsTyping(true); // Start typewriter effect
+      setTimeout(() => setIsTyping(false), 2000); 
     }, 4000);
 
     // Clean up the interval when the component is unmounted
@@ -217,9 +220,17 @@ const SideDrawer = (props: any) => {
           </Button>
         </Tooltip>
         <Text
-          // style={{ fontFamily: "Dancing Script" }}
+          style={{
+            fontFamily: "Dancing Script",
+            width: "50%",
+            textAlign: "center",
+            // border:"1px solid pink"
+          }}
           fontSize="2xl"
           fontFamily="Work sans"
+          // width={1000}
+          // className=""
+          backgroundColor={"rgb(238, 179, 179)"}
         >
           <span
             className="header-title"
@@ -230,7 +241,12 @@ const SideDrawer = (props: any) => {
           <span className="header-sub-title">
             {" "}
             - Smoothing
-            <span className="titleText">{" " + titleText}</span>
+            {/* <span className="titleText typewriter">{" " + titleText}</span> */}
+            {isTyping ? (
+              <span className="titleText typewriter">{" " + titleText}</span>
+            ) : (
+              <span className="titleText">{" " + titleText}</span>
+            )}
           </span>
         </Text>
         <div className="menus dfr">

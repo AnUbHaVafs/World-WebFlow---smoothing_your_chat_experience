@@ -36,10 +36,12 @@
     color: blue;
 }
 .header-box{
-    background-color: rgb(247, 131, 131) !important;
+    /* background-color: rgb(247, 131, 131) !important; */
+    background-color: rgb(238, 179, 179) !important;
 }
 .user-details{
-    background-color: rgb(240, 149, 149) !important;
+    background-color: rgb(238, 179, 179) !important;
+    /* background-color: rgb(240, 149, 149) !important; */
 }
 .search-users-down-button{
     display: none !important;
@@ -77,5 +79,18 @@
     }
     .header-sub-title{
         font-size: 13px !important;
+    }
+}
+.typewriter {
+    animation: typing 2s steps(40, end);
+}
+
+@keyframes typing {
+    from {
+        clip-path: inset(0% 100% 100% 0%);
+    }
+
+    to {
+        clip-path: inset(0% 0% 0% 0%);
     }
 }
