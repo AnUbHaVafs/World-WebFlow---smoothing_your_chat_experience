@@ -50,11 +50,11 @@ const SideDrawer = (props: any) => {
   const [loadingChat, setLoadingChat] = useState<boolean>(false);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const synonymsOfTitle = [
-    "chat experience",
-    "communication",
-    "conversational",
+    "connects",
+    "talks",
+    "world",
     "dialogue",
-    "interaction",
+    "interact",
   ];
 
   const {
