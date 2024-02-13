@@ -222,7 +222,7 @@ const SideDrawer = (props: any) => {
         <Text
           style={{
             fontFamily: "Dancing Script",
-            width: "50%",
+            // width: "50%",
             textAlign: "center",
             // border:"1px solid pink"
           }}
