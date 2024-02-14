@@ -42,20 +42,14 @@ const ENDPOINT = "https://world-webflow-backend-1.onrender.com";
 const SideDrawer = (props: any) => {
   const { expand, setExpand } = props;
   const [search, setSearch] = useState<any>("");
-  const [titleText, setTitleText] = useState("chat experience");
+  const [titleText, setTitleText] = useState("chats");
   const [flowReceiversNames, setFlowReceiversNames] = useState<string>("");
   const [alarmModal, setAlarmModal] = useState(false);
   const [searchResult, setSearchResult] = useState<any>([]);
   const [loading, setLoading] = useState<any>(false);
   const [loadingChat, setLoadingChat] = useState<boolean>(false);
   const [isTyping, setIsTyping] = useState<boolean>(false);
-  const synonymsOfTitle = [
-    "connects",
-    "talks",
-    "world",
-    "dialogue",
-    "interact",
-  ];
+  const synonymsOfTitle = ["banter", "talks", "world", "panel", "briefs"];
 
   const {
     setSelectedChat,
