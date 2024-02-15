@@ -140,6 +140,7 @@ function Homepage() {
         alignItems: "center",
         backgroundColor: toogle ? "" : "rgb(225,225,225)",
       }}
+      className="parent-container"
       maxW="l"
     >
       <div className="animation-body">
@@ -150,7 +151,10 @@ function Homepage() {
           </div>
         </div>
       </div>
-      <div style={{ width: "45%", height: "90%", zIndex: "2" }}>
+      <div
+        style={{ width: "45%", height: "90%", zIndex: "2" }}
+        className="body-content"
+      >
         <Box
           display="flex"
           justifyContent="center"
@@ -164,7 +168,7 @@ function Homepage() {
           // borderWidth="1px"
         >
           <Text
-            className={toogle ? "" : "typewriter"}
+            className={toogle ? "heading-world" : "heading-world typewriter"}
             fontSize="5xl"
             fontFamily="Work sans"
             zIndex={1}
@@ -198,7 +202,11 @@ function Homepage() {
         </Box>
       </div>
 
-      <div onClick={handleToogle} style={{ zIndex: "2" }}>
+      <div
+        onClick={handleToogle}
+        style={{ zIndex: "2" }}
+        className="switch-btn"
+      >
         <div className="container">
           <div className="switch-background off-shadow">
             <div className="innerSwitch">
@@ -230,6 +238,15 @@ function Homepage() {
           </div>
         </div>
       </div>
+      <style>
+        {`
+          .parent-container {
+            @media (max-width: 768px) {
+              flex-direction: column;
+            }
+          }
+        `}
+      </style>
     </Container>
   );
 }

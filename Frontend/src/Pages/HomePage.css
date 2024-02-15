@@ -7,3 +7,31 @@
   to { clip-path: inset(0% 0% 0% 0%); }
 }
 
+.parent-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+@media screen and (max-width: 1100px) {
+  .body-content{
+    width: 100% !important;
+  }
+  .parent-container{
+    flex-direction: column !important;    
+  }
+  .switch-btn{
+    width: 50% !important;
+  }
+  .switch-background {
+    /* background-color: rgb(91, 56, 115); */
+    height: 200px;
+    width: 450px;
+    border-radius: 100px;
+    /* margin-top: 3em; */
+  }
+  .heading-world{
+    font-size: 30px !important;
+  }
+}
