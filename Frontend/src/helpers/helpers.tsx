@@ -33,45 +33,83 @@ export const generateReponse = async (prompt: string) => {
   return generatedResponse;
 };
 
-function fitElementToParent(el: any, padding: any) {
-  let timeout = null;
+
+
+// function fitElementToParent(el: any, padding: any) {
+//   let timeout:any = null;
+//   function resize() {
+//     if (timeout) clearTimeout(timeout);
+//     anime.set(el, { scale: 1 });
+//     const pad = padding || 0;
+//     const parentEl = el.parentNode;
+//     const elOffsetWidth = el.offsetWidth - pad;
+//     const parentOffsetWidth = parentEl.offsetWidth;
+//     const ratio = parentOffsetWidth / elOffsetWidth;
+//     timeout = setTimeout(anime.set(el, { scale: ratio }), 10);
+//   }
+//   resize();
+//   window.addEventListener("resize", resize);
+// }
+
+function fitElementToParent(el: any, padding: number = 0) {
+  let timeout: ReturnType<typeof setTimeout> | null = null; // Use specific return type
+
   function resize() {
-    if (timeout) clearTimeout(timeout);
-    anime.set(el, { scale: 1 });
-    var pad = padding || 0;
-    var parentEl = el.parentNode;
-    var elOffsetWidth = el.offsetWidth - pad;
-    var parentOffsetWidth = parentEl.offsetWidth;
-    var ratio = parentOffsetWidth / elOffsetWidth;
-    timeout = setTimeout(anime.set(el, { scale: ratio }), 10);
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+
+    const parentEl = el.parentNode as HTMLElement; // Ensure parent is HTMLElement
+
+    if (!parentEl) {
+      // Handle case where parent is not found
+      console.error("Parent element not found for", el);
+      return;
+    }
+
+    const pad = padding || 0;
+    const elOffsetWidth = el.offsetWidth - pad;
+    const parentOffsetWidth = parentEl.offsetWidth;
+
+    // if (elOffsetWidth > parentOffsetWidth) {
+      // Calculate scale to fit based on width
+      const ratio = parentOffsetWidth / elOffsetWidth;
+      timeout = setTimeout(() => anime.set(el, { scale: ratio }), 10);
+    // } else {
+    //   // Reset scale if wider than parent
+    //   anime.set(el, { scale: 1 });
+    // }
   }
+
   resize();
   window.addEventListener("resize", resize);
 }
 
+
 export const advancedStaggeringAnimation = function () {
-  var staggerVisualizerEl = document.querySelector(".stagger-visualizer");
+  const staggerVisualizerEl = document.querySelector(".stagger-visualizer");
   console.log(staggerVisualizerEl);
-  var dotsWrapperEl = staggerVisualizerEl.querySelector(".dots-wrapper");
-  var dotsFragment = document.createDocumentFragment();
-  var grid = [20, 10];
-  var cell = 55;
-  var numberOfElements = grid[0] * grid[1];
-  var animation;
-  var paused = true;
+  const dotsWrapperEl = staggerVisualizerEl && staggerVisualizerEl.querySelector(".dots-wrapper");
+  const dotsFragment = document.createDocumentFragment();
+  const grid = [20, 10];
+  const cell = 55;
+  const numberOfElements = grid[0] * grid[1];
+  let animation:any;
+  let paused = true;
+  console.log(dotsFragment,grid,cell,numberOfElements,paused);
 
   fitElementToParent(staggerVisualizerEl, 0);
 
-  for (var i = 0; i < numberOfElements; i++) {
-    var dotEl = document.createElement("div");
+  for (let i = 0; i < numberOfElements; i++) {
+    const dotEl = document.createElement("div");
     dotEl.classList.add("dot");
     dotsFragment.appendChild(dotEl);
   }
 
-  dotsWrapperEl.appendChild(dotsFragment);
+  dotsWrapperEl && dotsWrapperEl.appendChild(dotsFragment);
 
-  var index = anime.random(0, numberOfElements - 1);
-  var nextIndex = 0;
+  let index = anime.random(0, numberOfElements - 1);
+  let nextIndex = 0;
 
   anime.set(".stagger-visualizer .cursor", {
     translateX: anime.stagger(-cell, { grid: grid, from: index, axis: "x" }),
