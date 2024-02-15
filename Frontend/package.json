@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.11.0",
     "@ionic/cli": "^7.1.5",
     "@ionic/react": "^7.5.7",
+    "animejs": "^3.2.2",
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
     "framer-motion": "^10.15.1",
